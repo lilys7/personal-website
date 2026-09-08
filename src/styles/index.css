@@ -1,0 +1,56 @@
+@import "tailwindcss";
+@import "../assets/fonts/stylesheet.css";
+
+@theme {
+  --color-ink: #12130f;
+  --color-mute: #404040;
+  --color-sage: #9eb6a3;
+  --color-mist: #eae6e5;
+  --color-clay: #8f8073;
+  --color-paper: #ffffff;
+
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sakura Handmade", ui-sans-serif, system-ui, sans-serif;
+
+  --max-width-content: 75rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-mist text-ink;
+  }
+}
+
+@layer utilities {
+  .bulletin-dots {
+    background-image: radial-gradient(
+      circle,
+      rgb(18 19 15 / 0.055) 0.55px,
+      transparent 0.65px
+    );
+    background-size: 20px 20px;
+    background-position: 0 0;
+  }
+}
