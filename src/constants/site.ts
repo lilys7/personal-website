@@ -4,6 +4,9 @@ export const SITE = {
   subtitle: 'Computer Science student at the University of Maryland',
   email: 'hello@lilyshen.com',
   resumePath: '/resume.pdf',
+  // add your profile urls here
+  github: 'https://github.com/lilys7',
+  linkedin: 'https://www.linkedin.com/in/lilyshen7',
 } as const
 
 export const NAV_LINKS = [
