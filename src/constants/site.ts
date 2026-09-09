@@ -10,6 +10,7 @@ export const NAV_LINKS = [
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Hobbies', href: '#hobbies' },
   { label: 'Resume', href: '#resume' },
   { label: 'Contact', href: '#contact' },
 ] as const

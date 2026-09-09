@@ -106,7 +106,7 @@ export function Navbar() {
           {SITE.name}
         </a>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-6 lg:flex lg:gap-8">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <NavAnchor
@@ -118,7 +118,7 @@ export function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Button size="sm" variant="outline" onClick={downloadResume}>
             Resume
           </Button>
@@ -126,7 +126,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-sm text-ink transition-colors hover:bg-mist/60 md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-sm text-ink transition-colors hover:bg-mist/60 lg:hidden"
           aria-expanded={open}
           aria-controls={menuId}
           aria-label={open ? 'Close menu' : 'Open menu'}
@@ -148,7 +148,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="border-t border-ink/5 bg-paper md:hidden"
+            className="border-t border-ink/5 bg-paper lg:hidden"
           >
             <ul className="flex flex-col gap-1 px-6 py-6">
               {NAV_LINKS.map((link) => (

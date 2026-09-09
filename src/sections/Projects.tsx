@@ -11,9 +11,9 @@ export function Projects() {
     <Section id="projects" title="Projects">
       <article>
         <h3 className="font-display text-3xl font-normal tracking-tight text-ink sm:text-4xl">
-          Cloak
+          Cloaked
         </h3>
-        <p className="mt-2 text-base italic text-mute sm:text-lg">
+        <p className="mt-5 text-base italic text-mute sm:text-lg">
           Demo video with web and mobile
         </p>
 

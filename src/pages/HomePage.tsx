@@ -10,6 +10,9 @@ const Experience = lazy(() =>
 const Projects = lazy(() =>
   import('@/sections/Projects').then((m) => ({ default: m.Projects })),
 )
+const Hobbies = lazy(() =>
+  import('@/sections/Hobbies').then((m) => ({ default: m.Hobbies })),
+)
 const Resume = lazy(() =>
   import('@/sections/Resume').then((m) => ({ default: m.Resume })),
 )
@@ -29,6 +32,7 @@ export function HomePage() {
         <About />
         <Experience />
         <Projects />
+        <Hobbies />
         <Resume />
         <Contact />
       </Suspense>
