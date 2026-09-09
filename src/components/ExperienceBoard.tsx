@@ -25,7 +25,7 @@ export function ExperienceBoard({ experience, className }: ExperienceBoardProps)
       onClick={handleClick}
       aria-label={`${experience.company}, ${experience.role}. View details.`}
       className={cn(
-        'group relative mx-auto block w-[66vw] max-w-5xl outline-none',
+        '@container group relative mx-auto block w-[90vw] max-w-5xl outline-none sm:w-[66vw]',
         className,
       )}
       // shorter board: natural ~0.53 ratio × 0.7 height
@@ -42,23 +42,14 @@ export function ExperienceBoard({ experience, className }: ExperienceBoardProps)
         draggable={false}
       />
 
-      <div className="absolute inset-[10%_7%_12%_7%] z-[1] flex flex-col items-center justify-center gap-2 px-2 text-center sm:inset-[11%_8%_13%_8%] sm:gap-3 sm:px-4 md:gap-3.5">
-        <p
-          className={cn(
-            'font-display font-normal tracking-wide text-[#f3ebe0]',
-            experience.company.length > 42
-              ? 'text-lg leading-[1.9] sm:text-2xl md:text-3xl lg:text-[2.15rem]'
-              : experience.company.length > 28
-                ? 'text-xl leading-[1.9] sm:text-3xl md:text-4xl lg:text-[2.65rem]'
-                : 'text-2xl leading-[1.45] sm:text-4xl md:text-5xl lg:text-[3.15rem]',
-          )}
-        >
+      <div className="absolute inset-[24%_12%_18%_12%] z-[1] flex min-h-0 flex-col items-center justify-center gap-0.5 overflow-hidden px-1.5 text-center sm:inset-[25%_13%_19%_13%] sm:gap-1 sm:px-2.5 md:gap-1.5">
+        <p className="w-full max-w-full text-balance font-display font-normal leading-none pt-[0.8em] pb-[0.25em] text-[clamp(0.9rem,4cqi,2.0rem)] text-[#f3ebe0]">
           {experience.company}
         </p>
-        <p className="text-sm italic leading-snug text-[#e8dccb] sm:text-base md:text-lg lg:text-xl">
+        <p className="w-full max-w-full italic leading-snug text-[clamp(0.55rem,2.5cqi,0.95rem)] text-[#e8dccb]">
           {experience.role}
         </p>
-        <p className="text-xs tracking-wide text-[#d4c4ae] sm:text-sm md:text-base lg:text-lg">
+        <p className="w-full max-w-full tracking-wide text-[clamp(0.5rem,2cqi,0.8rem)] text-[#d4c4ae]">
           {experience.period}
         </p>
       </div>
