@@ -71,7 +71,7 @@ export function Contact() {
         Contact
       </h2>
 
-      <div className="grid max-w-4xl gap-12 md:grid-cols-[minmax(0,1fr)_14rem] md:items-start md:gap-16">
+      <div className="grid max-w-4xl gap-12 md:grid-cols-[minmax(0,1fr)_auto] md:items-start md:gap-16">
         <form
           onSubmit={handleSubmit}
           className="relative flex flex-col gap-5 font-sans"
@@ -157,7 +157,7 @@ export function Contact() {
         </form>
 
         <div className="flex flex-col gap-3 border-t border-ink/10 pt-8 font-sans text-base text-mute md:border-t-0 md:pt-0">
-          <p>
+          <p className="whitespace-nowrap">
             GitHub:{' '}
             {SITE.github ? (
               <a
@@ -166,11 +166,11 @@ export function Contact() {
                 rel="noopener noreferrer"
                 className="text-ink underline decoration-ink/25 underline-offset-2 transition-colors hover:decoration-ink/60"
               >
-                {SITE.github.replace(/^https?:\/\//, '')}
+                {SITE.github.replace(/^https?:\/\/(www\.)?/, '')}
               </a>
             ) : null}
           </p>
-          <p>
+          <p className="whitespace-nowrap">
             LinkedIn:{' '}
             {SITE.linkedin ? (
               <a
@@ -179,7 +179,7 @@ export function Contact() {
                 rel="noopener noreferrer"
                 className="text-ink underline decoration-ink/25 underline-offset-2 transition-colors hover:decoration-ink/60"
               >
-                {SITE.linkedin.replace(/^https?:\/\//, '')}
+                {SITE.linkedin.replace(/^https?:\/\/(www\.)?/, '')}
               </a>
             ) : null}
           </p>
