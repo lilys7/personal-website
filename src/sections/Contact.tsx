@@ -3,6 +3,8 @@ import { SITE } from '@/constants/site'
 import { Button } from '@/components/Button'
 import { Recaptcha } from '@/components/Recaptcha'
 import { sendContactMessage } from '@/utils/sendContactMessage'
+import { sectionHeadingClass, sectionShellClass } from '@/components/Section'
+import { cn } from '@/utils/cn'
 
 const fieldClass =
   'mt-2 w-full border border-ink/15 bg-paper px-3 py-2.5 font-sans text-base text-ink outline-none transition-colors placeholder:text-mute/50 focus:border-ink/40'
@@ -62,11 +64,11 @@ export function Contact() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="relative scroll-mt-24 px-6 py-24 md:px-10 md:py-32"
+      className={sectionShellClass}
     >
       <h2
         id="contact-heading"
-        className="mb-12 font-sans text-4xl font-medium tracking-tight text-ink sm:text-5xl md:mb-16"
+        className={cn(sectionHeadingClass, 'mb-12 md:mb-16')}
       >
         Contact
       </h2>

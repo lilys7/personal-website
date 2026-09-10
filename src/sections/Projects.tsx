@@ -10,7 +10,7 @@ export function Projects() {
   return (
     <Section id="projects" title="Projects">
       <article>
-        <h3 className="font-display text-3xl font-normal tracking-tight text-ink sm:text-4xl">
+        <h3 className="font-sans text-3xl font-bold tracking-tight text-ink sm:text-4xl">
           Cloaked
         </h3>
         <p className="mt-5 text-base italic text-mute sm:text-lg">

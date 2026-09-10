@@ -3,7 +3,8 @@ import { motion, useInView, useReducedMotion } from 'framer-motion'
 import aboutLilyStrokes from '@/assets/aboutLilyStrokes.json'
 import portrait from '@/assets/portrait.jpg'
 import { BrushPainting, type BrushPaintingData } from '@/components/BrushPainting'
-import { sectionHeadingClass } from '@/components/Section'
+import { sectionHeadingClass, sectionShellClass } from '@/components/Section'
+import { cn } from '@/utils/cn'
 
 const BIO = `Hi! My name is Lily Shen, and I'm a CS major + General Business minor at the University of Maryland, College Park. In school, I'm mainly involved in the Advanced Cybersecurity Experience for Students (ACES) Honors College, App Development Club, and Product Space. My past experiences include AI/ML model implementation, data science, and full-stack engineering. In particular, I have a strong interest in AI/ML and product management. Outside of school, I love to go to the gym, read, crochet, play the guitar, and get food with my friends.`
 
@@ -37,7 +38,7 @@ export function About() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="relative min-h-[85vh] scroll-mt-24 overflow-hidden px-6 py-24 md:px-10 md:py-32"
+      className={cn(sectionShellClass, 'min-h-[85vh] overflow-hidden')}
     >
       <div
         aria-hidden="true"

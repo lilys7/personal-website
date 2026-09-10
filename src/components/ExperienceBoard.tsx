@@ -43,13 +43,13 @@ export function ExperienceBoard({ experience, className }: ExperienceBoardProps)
       />
 
       <div className="absolute inset-[24%_12%_18%_12%] z-[1] flex min-h-0 flex-col items-center justify-center gap-0.5 overflow-hidden px-1.5 text-center sm:inset-[25%_13%_19%_13%] sm:gap-1 sm:px-2.5 md:gap-1.5">
-        <p className="w-full max-w-full text-balance font-display font-normal leading-none pt-[0.8em] pb-[0.25em] text-[clamp(0.9rem,4cqi,2.0rem)] text-[#f3ebe0]">
+        <p className="w-full max-w-full text-balance font-sans font-bold leading-tight text-[clamp(2.5rem,4cqi,2.0rem)] text-[#f3ebe0]">
           {experience.company}
         </p>
-        <p className="w-full max-w-full italic leading-snug text-[clamp(0.55rem,2.5cqi,0.95rem)] text-[#e8dccb]">
+        <p className="w-full max-w-full italic leading-snug text-[clamp(0.9rem,4cqi,1.5rem)] text-[#e8dccb]">
           {experience.role}
         </p>
-        <p className="w-full max-w-full tracking-wide text-[clamp(0.5rem,2cqi,0.8rem)] text-[#d4c4ae]">
+        <p className="w-full max-w-full tracking-wide text-[clamp(0.5rem,2cqi,1.3rem)] text-[#d4c4ae]">
           {experience.period}
         </p>
       </div>

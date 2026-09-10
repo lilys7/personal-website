@@ -4,6 +4,9 @@ import { cn } from '@/utils/cn'
 export const sectionHeadingClass =
   'font-display text-5xl font-normal leading-[1.25] tracking-tight text-ink sm:text-6xl md:text-7xl md:leading-[1.2]'
 
+export const sectionShellClass =
+  'relative scroll-mt-24 px-6 py-16 md:px-10 md:py-20'
+
 type SectionProps = {
   id: string
   title?: string
@@ -25,7 +28,7 @@ export function Section({
       id={id}
       aria-labelledby={title ? `${id}-heading` : undefined}
       className={cn(
-        'relative scroll-mt-24 px-6 py-24 md:px-10 md:py-32',
+        sectionShellClass,
         spacious && 'min-h-[50vh]',
         className,
       )}

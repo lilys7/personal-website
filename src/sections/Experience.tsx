@@ -1,6 +1,6 @@
 import { EXPERIENCES } from '@/constants/experiences'
 import { ExperienceBoard } from '@/components/ExperienceBoard'
-import { sectionHeadingClass } from '@/components/Section'
+import { sectionHeadingClass, sectionShellClass } from '@/components/Section'
 import gditPhoto1 from '@/assets/gdit/IMG_3423.png'
 import gditPhoto2 from '@/assets/gdit/IMG_6660.png'
 import gditPhoto3 from '@/assets/gdit/IMG_6726.png'
@@ -97,11 +97,11 @@ export function Experience() {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="relative scroll-mt-24 px-6 py-24 md:px-10 md:py-32"
+      className={sectionShellClass}
     >
       <h2
         id="experience-heading"
-        className={cn(sectionHeadingClass, 'mb-14 md:mb-20')}
+        className={cn(sectionHeadingClass, 'mb-12 md:mb-16')}
       >
         Experience
       </h2>
@@ -134,7 +134,7 @@ export function Experience() {
                 >
                   <div className="min-w-0 flex-1">
                     <header className="max-w-3xl">
-                      <h3 className="font-display text-3xl font-normal tracking-tight text-ink sm:text-4xl">
+                      <h3 className="font-sans text-3xl font-bold tracking-tight text-ink sm:text-4xl">
                         {experience.company}
                       </h3>
                       <p className="mt-3 text-base italic text-mute sm:text-lg">
