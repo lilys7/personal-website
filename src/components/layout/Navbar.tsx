@@ -2,7 +2,6 @@ import { useCallback, useEffect, useId, useState, type MouseEvent } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { NAV_LINKS, SITE, type NavLink } from '@/constants/site'
-import { downloadResume } from '@/utils/downloadResume'
 import { useScrolled } from '@/hooks/useScrolled'
 import { useSmoothScroll } from '@/hooks/useSmoothScroll'
 import { cn } from '@/utils/cn'
@@ -108,16 +107,6 @@ export function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden lg:block">
-          <button
-            type="button"
-            onClick={() => void downloadResume()}
-            className="inline-flex h-9 items-center justify-center rounded-sm border border-ink/15 px-4 text-xs font-medium tracking-wide text-ink transition-colors hover:border-ink/40 hover:bg-mist/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/20 focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
-          >
-            Resume
-          </button>
-        </div>
-
         <button
           type="button"
           className="inline-flex h-10 w-10 items-center justify-center rounded-sm text-ink transition-colors hover:bg-mist/60 lg:hidden"
@@ -154,18 +143,6 @@ export function Navbar() {
                   />
                 </li>
               ))}
-              <li className="pt-4">
-                <button
-                  type="button"
-                  onClick={() => {
-                    close()
-                    void downloadResume()
-                  }}
-                  className="inline-flex h-11 w-full items-center justify-center rounded-sm border border-ink/15 px-6 text-sm font-medium tracking-wide text-ink transition-colors hover:border-ink/40 hover:bg-mist/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/20 focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
-                >
-                  Resume
-                </button>
-              </li>
             </ul>
           </motion.div>
         ) : null}
