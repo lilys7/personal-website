@@ -2,10 +2,10 @@ import { useCallback, useEffect, useId, useState, type MouseEvent } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { NAV_LINKS, SITE, type NavLink } from '@/constants/site'
+import { downloadResume } from '@/utils/downloadResume'
 import { useScrolled } from '@/hooks/useScrolled'
 import { useSmoothScroll } from '@/hooks/useSmoothScroll'
 import { cn } from '@/utils/cn'
-import { Button } from '@/components/Button'
 
 function NavAnchor({
   link,
@@ -60,16 +60,6 @@ export function Navbar() {
     setOpen((v) => !v)
   }, [])
 
-  const downloadResume = useCallback(() => {
-    const link = document.createElement('a')
-    link.href = SITE.resumePath
-    link.download = 'Lily_Shen_Resume.pdf'
-    link.rel = 'noopener'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }, [])
-
   useEffect(() => {
     if (!open) return
 
@@ -119,9 +109,13 @@ export function Navbar() {
         </ul>
 
         <div className="hidden lg:block">
-          <Button size="sm" variant="outline" onClick={downloadResume}>
+          <button
+            type="button"
+            onClick={() => void downloadResume()}
+            className="inline-flex h-9 items-center justify-center rounded-sm border border-ink/15 px-4 text-xs font-medium tracking-wide text-ink transition-colors hover:border-ink/40 hover:bg-mist/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/20 focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+          >
             Resume
-          </Button>
+          </button>
         </div>
 
         <button
@@ -161,9 +155,16 @@ export function Navbar() {
                 </li>
               ))}
               <li className="pt-4">
-                <Button className="w-full" variant="outline" onClick={downloadResume}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    close()
+                    void downloadResume()
+                  }}
+                  className="inline-flex h-11 w-full items-center justify-center rounded-sm border border-ink/15 px-6 text-sm font-medium tracking-wide text-ink transition-colors hover:border-ink/40 hover:bg-mist/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/20 focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+                >
                   Resume
-                </Button>
+                </button>
               </li>
             </ul>
           </motion.div>
