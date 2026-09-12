@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
+import { useRichMotion } from '@/hooks/useRichMotion'
 import { cn } from '@/utils/cn'
 
 type PaintedTextProps = {
@@ -17,6 +18,7 @@ export function PaintedText({
   as: Tag = 'h1',
 }: PaintedTextProps) {
   const reduceMotion = useReducedMotion()
+  const richMotion = useRichMotion()
   const chars = useMemo(() => [...text], [text])
 
   const paintables = chars.filter((c) => c !== ' ').length
@@ -27,7 +29,8 @@ export function PaintedText({
       ? 0
       : Math.max(0.05, (endAt - start - letterDuration) / (paintables - 1))
 
-  if (reduceMotion) {
+  // webkit clips ink on transformed inline-blocks; phones skip per-letter motion
+  if (reduceMotion || !richMotion) {
     return <Tag className={className}>{text}</Tag>
   }
 
@@ -59,8 +62,8 @@ export function PaintedText({
             key={`${char}-${i}`}
             aria-hidden="true"
             className="inline-block overflow-visible px-[0.02em]"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{
               duration: letterDuration,
               delay,

@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
+import { useRichMotion } from '@/hooks/useRichMotion'
 
 type BrushBannerProps = {
   className?: string
@@ -6,6 +7,8 @@ type BrushBannerProps = {
 
 export function BrushBanner({ className }: BrushBannerProps) {
   const reduceMotion = useReducedMotion()
+  const richMotion = useRichMotion()
+  const animateWipe = !reduceMotion && richMotion
 
   return (
     <motion.svg
@@ -13,7 +16,7 @@ export function BrushBanner({ className }: BrushBannerProps) {
       preserveAspectRatio="xMidYMid meet"
       aria-hidden="true"
       className={className}
-      initial={reduceMotion ? false : { clipPath: 'inset(0 100% 0 0)' }}
+      initial={animateWipe ? { clipPath: 'inset(0 100% 0 0)' } : false}
       animate={{ clipPath: 'inset(0 0% 0 0)' }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
