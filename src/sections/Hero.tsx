@@ -5,6 +5,7 @@ import { SITE } from '@/constants/site'
 import { PAINT_END_S } from '@/constants/paint'
 import { useSmoothScroll } from '@/hooks/useSmoothScroll'
 import { Button } from '@/components/Button'
+import { BrushBanner } from '@/components/BrushBanner'
 import { InkPainting } from '@/components/InkPainting'
 import { PaintedText } from '@/components/PaintedText'
 
@@ -30,24 +31,27 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-content flex-col items-center py-24 text-center md:py-32">
-        <PaintedText
-          text={SITE.name}
-          endAt={PAINT_END_S}
-          className="font-display text-5xl leading-[1.25] font-normal tracking-tight text-ink sm:text-6xl md:text-7xl md:leading-[1.2]"
-        />
+        <div className="relative inline-flex flex-col items-center">
+          <BrushBanner className="pointer-events-none absolute top-[42%] left-1/2 z-0 h-[13.5rem] w-[min(148%,26rem)] -translate-x-1/2 -translate-y-1/2 sm:h-[15rem] sm:w-[min(132%,38rem)] md:h-[17rem] md:w-[48rem]" />
+          <PaintedText
+            text={SITE.name}
+            endAt={PAINT_END_S}
+            className="relative z-10 font-display text-5xl leading-[1.25] font-normal tracking-tight text-ink sm:text-6xl md:text-7xl md:leading-[1.2]"
+          />
 
-        <motion.p
-          className="mt-8 max-w-md text-base leading-relaxed text-mute sm:text-lg"
-          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.5,
-            delay: reduceMotion ? 0 : PAINT_END_S * 0.7,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        >
-          {SITE.subtitle}
-        </motion.p>
+          <motion.p
+            className="relative z-10 mt-8 max-w-md text-base leading-relaxed text-mute sm:text-lg max-md:[text-shadow:0_0_12px_#f4f0ea,0_1px_8px_#f4f0ea]"
+            initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: reduceMotion ? 0 : PAINT_END_S * 0.7,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            {SITE.subtitle}
+          </motion.p>
+        </div>
 
         <motion.div
           className="mt-12"
