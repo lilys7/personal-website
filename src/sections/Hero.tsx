@@ -1,20 +1,11 @@
-import { useCallback } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowDown } from 'lucide-react'
 import { SITE } from '@/constants/site'
-import { useSmoothScroll } from '@/hooks/useSmoothScroll'
-import { Button } from '@/components/Button'
 import { BrushBanner } from '@/components/BrushBanner'
 import { InkPainting } from '@/components/InkPainting'
 import { PaintedText } from '@/components/PaintedText'
 
 export function Hero() {
-  const scrollTo = useSmoothScroll()
   const reduceMotion = useReducedMotion()
-
-  const explore = useCallback(() => {
-    scrollTo('#about')
-  }, [scrollTo])
 
   return (
     <section
@@ -59,19 +50,6 @@ export function Hero() {
             </motion.p>
           </div>
         </div>
-
-        <motion.div
-          className="mt-12"
-          initial={reduceMotion ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 0.45,
-            delay: reduceMotion ? 0 : 0.85,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        >
-          
-        </motion.div>
       </div>
     </section>
   )
