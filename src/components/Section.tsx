@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { cn } from '@/utils/cn'
 
 export const sectionHeadingClass =
-  'font-display pt-[0.18em] text-5xl font-normal leading-[1.4] tracking-tight text-ink sm:text-6xl md:text-7xl md:leading-[1.35]'
+  'font-display block overflow-visible pt-[0.55em] text-5xl font-normal leading-[1.65] tracking-tight text-ink sm:text-6xl md:pt-[0.22em] md:text-7xl md:leading-[1.45]'
 
 export const sectionShellClass =
   'relative scroll-mt-24 px-6 py-16 md:px-10 md:py-20'
