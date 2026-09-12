@@ -38,21 +38,23 @@ export function About() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className={cn(sectionShellClass, 'min-h-[85vh] overflow-hidden')}
+      className={cn(sectionShellClass, 'min-h-[85vh]')}
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 left-0 z-0 h-[85dvh] opacity-75"
+        className="pointer-events-none absolute inset-0 z-0 overflow-x-clip"
       >
-        {shouldPaint ? (
-          <BrushPainting
-            imageSrc={lilySrc!}
-            data={aboutLilyStrokes as BrushPaintingData}
-            play="immediate"
-            title="Lily ink painting"
-            className="absolute bottom-0 left-0 h-full object-left-bottom"
-          />
-        ) : null}
+        <div className="absolute bottom-0 left-0 h-[85dvh] opacity-75">
+          {shouldPaint ? (
+            <BrushPainting
+              imageSrc={lilySrc!}
+              data={aboutLilyStrokes as BrushPaintingData}
+              play="immediate"
+              title="Lily ink painting"
+              className="absolute bottom-0 left-0 h-full object-left-bottom"
+            />
+          ) : null}
+        </div>
       </div>
 
       <div ref={triggerRef} className="relative z-10 w-full">

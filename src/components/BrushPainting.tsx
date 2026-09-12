@@ -1,6 +1,6 @@
-import { useId } from 'react'
+import { useId, useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { useRef } from 'react'
+import { useRichMotion } from '@/hooks/useRichMotion'
 import { cn } from '@/utils/cn'
 
 export type BrushStroke = {
@@ -33,6 +33,7 @@ export function BrushPainting({
   title = 'Ink painting',
 }: BrushPaintingProps) {
   const reduceMotion = useReducedMotion()
+  const richMotion = useRichMotion()
   const uid = useId()
   const maskId = `${uid}-brush-mask`
   const blurId = `${uid}-brush-blur`
@@ -42,12 +43,14 @@ export function BrushPainting({
 
   const { width: VIEW_W, height: VIEW_H, strokes } = data
 
-  if (reduceMotion) {
+  // phones: static image. 100+ masked stroke tweens plus blur stall mobile gpus.
+  if (reduceMotion || !richMotion) {
     return (
       <img
         src={imageSrc}
         alt=""
         aria-hidden="true"
+        decoding="async"
         className={cn(
           'block h-full w-auto max-w-none select-none object-contain',
           className,
