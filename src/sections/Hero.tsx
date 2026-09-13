@@ -31,13 +31,13 @@ export function Hero() {
             />
           </div>
 
-          <div className="relative mt-11">
+          <div className="relative mx-auto mt-11 w-fit max-w-[min(100%,28rem)] px-6 py-5 sm:px-8 sm:py-7">
             <BrushBanner
               variant="subtitle"
-              className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[5.75rem] w-[min(176%,23rem)] -translate-x-1/2 -translate-y-3/5 sm:h-24 sm:w-[min(148%,30rem)] md:h-28 md:w-[38rem]"
+              className="pointer-events-none absolute inset-0 z-0 h-full w-full"
             />
             <motion.p
-              className="relative z-10 max-w-md text-base leading-relaxed text-mute sm:text-lg"
+              className="relative z-10 text-base leading-relaxed text-pretty text-mute sm:text-lg"
               initial={reduceMotion ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
