@@ -1,3 +1,4 @@
+import { Navigate, useParams } from 'react-router-dom'
 import { EXPERIENCES } from '@/constants/experiences'
 import { ExperienceBoard } from '@/components/ExperienceBoard'
 import { sectionHeadingClass, sectionShellClass } from '@/components/Section'
@@ -111,62 +112,69 @@ export function Experience() {
           <ExperienceBoard key={experience.id} experience={experience} />
         ))}
       </div>
+    </section>
+  )
+}
 
-      <div className="mt-24 w-full md:mt-32">
-        <div className="flex flex-col gap-16 md:gap-20">
-          {EXPERIENCES.map((experience) => {
-            const photos = EXPERIENCE_PHOTOS[experience.id]
-            const isCisess = experience.id === 'cisess'
+export function ExperienceDetail() {
+  const { id } = useParams()
+  const experience = EXPERIENCES.find((item) => item.id === id)
 
-            return (
-              <article
-                key={experience.id}
-                id={`experience-${experience.id}`}
-                className="scroll-mt-28 border-t border-ink/10 pt-10"
+  if (!experience) {
+    return <Navigate to="/experience" replace />
+  }
+
+  const photos = EXPERIENCE_PHOTOS[experience.id]
+  const isCisess = experience.id === 'cisess'
+
+  return (
+    <section
+      aria-labelledby="experience-detail-heading"
+      className={sectionShellClass}
+    >
+      <article>
+        <div
+          className={cn(
+            'gap-10',
+            photos || isCisess
+              ? 'flex flex-col md:flex-row md:items-start md:justify-between'
+              : '',
+          )}
+        >
+          <div className="min-w-0 flex-1">
+            <header className="max-w-3xl">
+              <h2
+                id="experience-detail-heading"
+                className="font-sans text-3xl font-bold tracking-tight text-ink sm:text-4xl"
               >
-                <div
-                  className={cn(
-                    'gap-10',
-                    photos || isCisess
-                      ? 'flex flex-col md:flex-row md:items-start md:justify-between'
-                      : '',
-                  )}
-                >
-                  <div className="min-w-0 flex-1">
-                    <header className="max-w-3xl">
-                      <h3 className="font-sans text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-                        {experience.company}
-                      </h3>
-                      <p className="mt-3 text-base italic text-mute sm:text-lg">
-                        {experience.role}
-                      </p>
-                      <p className="mt-1 text-sm text-clay">
-                        {experience.period}
-                        <span className="mx-2 text-ink/20" aria-hidden="true">
-                          ·
-                        </span>
-                        {experience.location}
-                      </p>
-                    </header>
+                {experience.company}
+              </h2>
+              <p className="mt-3 text-base italic text-mute sm:text-lg">
+                {experience.role}
+              </p>
+              <p className="mt-1 text-sm text-clay">
+                {experience.period}
+                <span className="mx-2 text-ink/20" aria-hidden="true">
+                  ·
+                </span>
+                {experience.location}
+              </p>
+            </header>
 
-                    <ul className="mt-8 max-w-3xl list-disc space-y-3 pl-5 text-base leading-relaxed text-mute marker:text-clay sm:text-lg">
-                      {experience.bullets.map((bullet) => (
-                        <li key={bullet}>{bullet}</li>
-                      ))}
-                    </ul>
-                  </div>
+            <ul className="mt-8 max-w-3xl list-disc space-y-3 pl-5 text-base leading-relaxed text-mute marker:text-clay sm:text-lg">
+              {experience.bullets.map((bullet) => (
+                <li key={bullet}>{bullet}</li>
+              ))}
+            </ul>
+          </div>
 
-                  {isCisess ? (
-                    <CisessMedia />
-                  ) : photos ? (
-                    <PhotoZigZag photos={photos} label={experience.company} />
-                  ) : null}
-                </div>
-              </article>
-            )
-          })}
+          {isCisess ? (
+            <CisessMedia />
+          ) : photos ? (
+            <PhotoZigZag photos={photos} label={experience.company} />
+          ) : null}
         </div>
-      </div>
+      </article>
     </section>
   )
 }

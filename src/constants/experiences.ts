@@ -1,6 +1,7 @@
 export type ExperienceItem = {
   id: string
   company: string
+  navLabel: string
   role: string
   period: string
   location: string
@@ -11,6 +12,7 @@ export const EXPERIENCES: ExperienceItem[] = [
   {
     id: 'gdit',
     company: 'General Dynamics Information Technology',
+    navLabel: 'GDIT',
     role: 'AI/ML Engineering Intern',
     period: 'Jun 2026 – Present',
     location: 'Springfield, VA',
@@ -24,6 +26,7 @@ export const EXPERIENCES: ExperienceItem[] = [
   {
     id: 'exiger',
     company: 'Exiger (Client Project)',
+    navLabel: 'Exiger',
     role: 'Full-Stack Engineering Intern',
     period: 'Feb 2026 – May 2026',
     location: 'College Park, MD',
@@ -35,6 +38,7 @@ export const EXPERIENCES: ExperienceItem[] = [
   {
     id: 'replenish',
     company: 'Replenish NutrAI',
+    navLabel: 'Replenish NutrAI',
     role: 'Backend Engineering Intern',
     period: 'Dec 2025 – Jun 2026',
     location: 'Remote',
@@ -47,6 +51,7 @@ export const EXPERIENCES: ExperienceItem[] = [
   {
     id: 'apl',
     company: 'Johns Hopkins Applied Physics Laboratory (APL)',
+    navLabel: 'Johns Hopkins APL',
     role: 'Full-Stack Engineering Intern',
     period: 'Sep 2023 – Aug 2024',
     location: 'Fulton, MD',
@@ -59,6 +64,7 @@ export const EXPERIENCES: ExperienceItem[] = [
   {
     id: 'cisess',
     company: 'CISESS/NOAA',
+    navLabel: 'CISESS/NOAA',
     role: 'Data Science Intern',
     period: 'Jun 2023 – Jan 2024',
     location: 'College Park, MD',

@@ -5,7 +5,7 @@ export const sectionHeadingClass =
   'font-display block overflow-visible pt-[0.55em] text-5xl font-normal leading-[1.65] tracking-tight text-ink sm:text-6xl md:pt-[0.22em] md:text-7xl md:leading-[1.45]'
 
 export const sectionShellClass =
-  'relative scroll-mt-24 px-6 py-16 md:px-10 md:py-20'
+  'relative px-6 py-16 md:px-10 md:py-20'
 
 type SectionProps = {
   id: string

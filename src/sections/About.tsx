@@ -20,8 +20,6 @@ export function About() {
   const [lilySrc, setLilySrc] = useState<string | null>(null)
 
   useEffect(() => {
-    if (!inView && !reduceMotion) return
-
     let cancelled = false
     void import('@/assets/about-lily.png').then((mod) => {
       if (!cancelled) setLilySrc(mod.default)
@@ -30,7 +28,7 @@ export function About() {
     return () => {
       cancelled = true
     }
-  }, [inView, reduceMotion])
+  }, [])
 
   const shouldPaint = Boolean(lilySrc) && (inView || Boolean(reduceMotion))
 

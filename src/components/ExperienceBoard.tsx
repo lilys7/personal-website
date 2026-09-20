@@ -1,9 +1,10 @@
-import type { MouseEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import board from '@/assets/calligraphy-board.png'
 import type { ExperienceItem } from '@/constants/experiences'
-import { useSmoothScroll } from '@/hooks/useSmoothScroll'
 import { cn } from '@/utils/cn'
+
+const MotionLink = motion.create(Link)
 
 type ExperienceBoardProps = {
   experience: ExperienceItem
@@ -11,18 +12,11 @@ type ExperienceBoardProps = {
 }
 
 export function ExperienceBoard({ experience, className }: ExperienceBoardProps) {
-  const scrollTo = useSmoothScroll()
   const reduceMotion = useReducedMotion()
 
-  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
-    scrollTo(`#experience-${experience.id}`)
-  }
-
   return (
-    <motion.a
-      href={`#experience-${experience.id}`}
-      onClick={handleClick}
+    <MotionLink
+      to={`/experience/${experience.id}`}
       aria-label={`${experience.company}, ${experience.role}. View details.`}
       className={cn(
         '@container group relative mx-auto block aspect-[993/520] w-[90vw] max-w-5xl outline-none sm:aspect-[993/371] sm:w-[66vw]',
@@ -51,6 +45,6 @@ export function ExperienceBoard({ experience, className }: ExperienceBoardProps)
           {experience.period}
         </p>
       </div>
-    </motion.a>
+    </MotionLink>
   )
 }

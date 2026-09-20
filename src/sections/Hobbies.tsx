@@ -10,7 +10,7 @@ export function Hobbies() {
             key={hobby.id}
             className="mb-6 inline-block w-full break-inside-avoid border border-ink/10 px-6 py-12 md:mb-8"
           >
-            <h3 className="font-display text-3xl font-normal leading-tight tracking-tight text-ink sm:text-4xl">
+            <h3 className="font-sans text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
               {hobby.title}
             </h3>
             {hobby.subtitle ? (

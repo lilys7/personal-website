@@ -10,12 +10,12 @@ export const SITE = {
 } as const
 
 export const NAV_LINKS = [
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Hobbies', href: '#hobbies' },
-  { label: 'Resume', href: '#resume' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', to: '/about' },
+  { label: 'Experience', to: '/experience' },
+  { label: 'Projects', to: '/projects' },
+  { label: 'Hobbies', to: '/hobbies' },
+  { label: 'Resume', to: '/resume' },
+  { label: 'Contact', to: '/contact' },
 ] as const
 
 export type NavLink = (typeof NAV_LINKS)[number]

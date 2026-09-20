@@ -11,7 +11,7 @@ export function Hero() {
     <section
       id="top"
       aria-label="Introduction"
-      className="relative min-h-[100svh] overflow-visible px-6 pt-32 pb-16 md:flex md:min-h-dvh md:items-center md:px-10 md:pt-16 md:pb-0"
+      className="relative min-h-[100svh] overflow-visible px-6 pt-20 pb-16 md:flex md:min-h-dvh md:items-center md:px-10 md:pt-16 md:pb-0"
     >
       <div
         aria-hidden="true"
