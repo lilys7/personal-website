@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { EXPERIENCES } from '@/constants/experiences'
+import { PROJECTS } from '@/constants/projects'
 import { NAV_LINKS, SITE } from '@/constants/site'
 import { cn } from '@/utils/cn'
 
@@ -88,20 +89,30 @@ export function Sidebar() {
 
               <ul className="mt-10 flex flex-col gap-1">
                 {NAV_LINKS.map((link) => {
-                  if (link.to === '/experience') {
+                  if (link.to === '/experience' || link.to === '/projects') {
+                    const children =
+                      link.to === '/experience'
+                        ? EXPERIENCES.map((item) => ({
+                            id: item.id,
+                            label: item.navLabel,
+                            to: `/experience/${item.id}`,
+                          }))
+                        : PROJECTS.map((item) => ({
+                            id: item.id,
+                            label: item.navLabel,
+                            to: `/projects/${item.id}`,
+                          }))
+
                     return (
                       <li key={link.to}>
                         <NavLink to={link.to} end className={linkClass}>
                           {link.label}
                         </NavLink>
                         <ul className="mt-1 mb-2 ml-3 flex flex-col border-l border-ink/10 pl-3">
-                          {EXPERIENCES.map((experience) => (
-                            <li key={experience.id}>
-                              <NavLink
-                                to={`/experience/${experience.id}`}
-                                className={linkClass}
-                              >
-                                {experience.navLabel}
+                          {children.map((child) => (
+                            <li key={child.id}>
+                              <NavLink to={child.to} className={linkClass}>
+                                {child.label}
                               </NavLink>
                             </li>
                           ))}

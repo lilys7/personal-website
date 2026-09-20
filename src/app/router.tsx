@@ -3,7 +3,7 @@ import { RootLayout } from '@/components/layout/RootLayout'
 import { HomePage } from '@/pages/HomePage'
 import { About } from '@/sections/About'
 import { Experience, ExperienceDetail } from '@/sections/Experience'
-import { Projects } from '@/sections/Projects'
+import { ProjectDetail, Projects } from '@/sections/Projects'
 import { Hobbies } from '@/sections/Hobbies'
 import { Resume } from '@/sections/Resume'
 import { Contact } from '@/sections/Contact'
@@ -18,6 +18,7 @@ export const router = createBrowserRouter([
       { path: 'experience', element: <Experience /> },
       { path: 'experience/:id', element: <ExperienceDetail /> },
       { path: 'projects', element: <Projects /> },
+      { path: 'projects/:id', element: <ProjectDetail /> },
       { path: 'hobbies', element: <Hobbies /> },
       { path: 'resume', element: <Resume /> },
       { path: 'contact', element: <Contact /> },
