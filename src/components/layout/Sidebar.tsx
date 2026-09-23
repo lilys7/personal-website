@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useId, useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { useId } from 'react'
+import { NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { EXPERIENCES } from '@/constants/experiences'
 import { PROJECTS } from '@/constants/projects'
 import { NAV_LINKS, SITE } from '@/constants/site'
 import { cn } from '@/utils/cn'
+
+export const SIDEBAR_WIDTH = 'min(16rem,70vw)'
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
   cn(
@@ -13,33 +14,33 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? 'text-ink' : 'text-mute hover:text-ink',
   )
 
-export function Sidebar() {
-  const reduceMotion = useReducedMotion()
-  const location = useLocation()
-  const [open, setOpen] = useState(false)
+function navChildren(to: string) {
+  if (to === '/experience') {
+    return EXPERIENCES.map((item) => ({
+      id: item.id,
+      label: item.navLabel,
+      to: `/experience/${item.id}`,
+    }))
+  }
+
+  if (to === '/projects') {
+    return PROJECTS.map((item) => ({
+      id: item.id,
+      label: item.navLabel,
+      to: `/projects/${item.id}`,
+    }))
+  }
+
+  return []
+}
+
+type SidebarProps = {
+  open: boolean
+  onToggle: () => void
+}
+
+export function Sidebar({ open, onToggle }: SidebarProps) {
   const menuId = useId()
-
-  const close = useCallback(() => setOpen(false), [])
-  const toggle = useCallback(() => setOpen((v) => !v), [])
-
-  useEffect(() => {
-    close()
-  }, [location.pathname, close])
-
-  useEffect(() => {
-    if (!open) return
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') close()
-    }
-
-    document.body.style.overflow = 'hidden'
-    window.addEventListener('keydown', onKey)
-    return () => {
-      document.body.style.overflow = ''
-      window.removeEventListener('keydown', onKey)
-    }
-  }, [open, close])
 
   return (
     <>
@@ -49,7 +50,7 @@ export function Sidebar() {
         aria-expanded={open}
         aria-controls={menuId}
         aria-label={open ? 'Close menu' : 'Open menu'}
-        onClick={toggle}
+        onClick={onToggle}
       >
         {open ? (
           <X size={20} strokeWidth={1.75} />
@@ -58,82 +59,56 @@ export function Sidebar() {
         )}
       </button>
 
-      <AnimatePresence>
-        {open ? (
-          <>
-            <motion.div
-              aria-hidden="true"
-              className="fixed inset-0 z-40 bg-ink/20"
-              initial={reduceMotion ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={reduceMotion ? undefined : { opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              onClick={close}
-            />
-            <motion.nav
-              id={menuId}
-              aria-label="Primary"
-              className="fixed inset-y-0 left-0 z-50 flex w-[min(20rem,86vw)] flex-col bg-paper px-6 pt-20 pb-8 shadow-[8px_0_24px_rgb(18_19_15_/0.06)]"
-              initial={reduceMotion ? false : { x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={reduceMotion ? undefined : { x: '-100%' }}
-              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <NavLink
-                to="/"
-                end
-                className="font-display text-xl font-normal tracking-tight text-ink transition-opacity hover:opacity-70"
-              >
-                {SITE.name}
-              </NavLink>
+      <nav
+        id={menuId}
+        aria-label="Primary"
+        className={cn(
+          'fixed inset-y-0 left-0 z-40 flex flex-col bg-paper px-6 pt-20 pb-8 shadow-[8px_0_24px_rgb(18_19_15_/0.06)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
+          open ? 'translate-x-0' : 'pointer-events-none -translate-x-full',
+        )}
+        style={{ width: SIDEBAR_WIDTH }}
+      >
+        <NavLink
+          to="/"
+          end
+          className="font-display text-xl font-normal tracking-tight text-ink transition-opacity hover:opacity-70"
+        >
+          {SITE.name}
+        </NavLink>
 
-              <ul className="mt-10 flex flex-col gap-1">
-                {NAV_LINKS.map((link) => {
-                  if (link.to === '/experience' || link.to === '/projects') {
-                    const children =
-                      link.to === '/experience'
-                        ? EXPERIENCES.map((item) => ({
-                            id: item.id,
-                            label: item.navLabel,
-                            to: `/experience/${item.id}`,
-                          }))
-                        : PROJECTS.map((item) => ({
-                            id: item.id,
-                            label: item.navLabel,
-                            to: `/projects/${item.id}`,
-                          }))
+        <ul className="mt-10 flex flex-col gap-1">
+          {NAV_LINKS.map((link) => {
+            const children = navChildren(link.to)
 
-                    return (
-                      <li key={link.to}>
-                        <NavLink to={link.to} end className={linkClass}>
-                          {link.label}
+            if (children.length > 0) {
+              return (
+                <li key={link.to}>
+                  <NavLink to={link.to} end className={linkClass}>
+                    {link.label}
+                  </NavLink>
+                  <ul className="mt-1 mb-2 ml-3 flex flex-col border-l border-ink/10 pl-3">
+                    {children.map((child) => (
+                      <li key={child.id}>
+                        <NavLink to={child.to} className={linkClass}>
+                          {child.label}
                         </NavLink>
-                        <ul className="mt-1 mb-2 ml-3 flex flex-col border-l border-ink/10 pl-3">
-                          {children.map((child) => (
-                            <li key={child.id}>
-                              <NavLink to={child.to} className={linkClass}>
-                                {child.label}
-                              </NavLink>
-                            </li>
-                          ))}
-                        </ul>
                       </li>
-                    )
-                  }
+                    ))}
+                  </ul>
+                </li>
+              )
+            }
 
-                  return (
-                    <li key={link.to}>
-                      <NavLink to={link.to} className={linkClass}>
-                        {link.label}
-                      </NavLink>
-                    </li>
-                  )
-                })}
-              </ul>
-            </motion.nav>
-          </>
-        ) : null}
-      </AnimatePresence>
+            return (
+              <li key={link.to}>
+                <NavLink to={link.to} className={linkClass}>
+                  {link.label}
+                </NavLink>
+              </li>
+            )
+          })}
+        </ul>
+      </nav>
     </>
   )
 }

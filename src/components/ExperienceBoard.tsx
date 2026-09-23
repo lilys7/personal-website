@@ -19,7 +19,7 @@ export function ExperienceBoard({ experience, className }: ExperienceBoardProps)
       to={`/experience/${experience.id}`}
       aria-label={`${experience.company}, ${experience.role}. View details.`}
       className={cn(
-        '@container group relative mx-auto block aspect-[993/520] w-[90vw] max-w-5xl outline-none sm:aspect-[993/371] sm:w-[66vw]',
+        '@container group relative mx-auto block aspect-[993/520] w-[min(90%,100%)] max-w-5xl outline-none sm:aspect-[993/371] sm:w-[min(66%,100%)]',
         className,
       )}
       whileHover={reduceMotion ? undefined : { scale: 1.045, y: -6 }}

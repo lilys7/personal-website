@@ -1,29 +1,49 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { BulletinBackground } from '@/components/BulletinBackground'
 import { Footer } from '@/components/layout/Footer'
-import { Sidebar } from '@/components/layout/Sidebar'
+import { Sidebar, SIDEBAR_WIDTH } from '@/components/layout/Sidebar'
 
-function ScrollToTop() {
+export function RootLayout() {
   const { pathname } = useLocation()
+  const [open, setOpen] = useState(false)
+  const closedByUser = useRef(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
 
-  return null
-}
+  useEffect(() => {
+    if (pathname !== '/') return
 
-export function RootLayout() {
+    closedByUser.current = false
+    const id = window.setTimeout(() => {
+      if (!closedByUser.current) setOpen(true)
+    }, 280)
+
+    return () => window.clearTimeout(id)
+  }, [pathname])
+
+  const toggle = useCallback(() => {
+    setOpen((isOpen) => {
+      if (isOpen) closedByUser.current = true
+      return !isOpen
+    })
+  }, [])
+
   return (
     <div className="relative min-h-dvh">
       <BulletinBackground />
-      <Sidebar />
-      <ScrollToTop />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
+      <Sidebar open={open} onToggle={toggle} />
+      <div
+        className="transition-[padding-left] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        style={{ paddingLeft: open ? SIDEBAR_WIDTH : 0 }}
+      >
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </div>
   )
 }

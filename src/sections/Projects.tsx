@@ -19,6 +19,34 @@ const POLYMARKET_GITHUB_URL = 'https://github.com/lilys7/polymarket-analysis'
 const projectDescriptionClass =
   'mt-5 max-w-3xl text-base leading-relaxed text-mute sm:text-lg'
 
+const projectNoteHeadingClass =
+  'font-sans text-xl font-bold tracking-tight text-ink sm:text-2xl'
+
+function ProjectNotes({
+  learned,
+  overcame,
+}: {
+  learned: string
+  overcame: string
+}) {
+  return (
+    <div className="mt-8 max-w-3xl space-y-6">
+      <section>
+        <h4 className={projectNoteHeadingClass}>what i learned</h4>
+        <p className="mt-3 text-base leading-relaxed text-mute sm:text-lg">
+          {learned}
+        </p>
+      </section>
+      <section>
+        <h4 className={projectNoteHeadingClass}>failures i overcame</h4>
+        <p className="mt-3 text-base leading-relaxed text-mute sm:text-lg">
+          {overcame}
+        </p>
+      </section>
+    </div>
+  )
+}
+
 function CloakedProject() {
   return (
     <article>
@@ -31,6 +59,7 @@ function CloakedProject() {
       <p className="mt-5 text-base italic text-mute sm:text-lg">
         Demo video with web and mobile. Frontend React, HTML/CSS.
       </p>
+      <ProjectNotes learned="" overcame="" />
 
       <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-start md:gap-10">
         <div className="min-w-0 flex-1">
@@ -89,6 +118,7 @@ function SpotlightProject() {
         took pictures at, so you could see the background and recreate with your
         own? Spotlight does just that.
       </p>
+      <ProjectNotes learned="" overcame="" />
 
       <div className="mt-8">
         <iframe
@@ -128,6 +158,7 @@ function PolymarketProject() {
         grade. Python, pandas, scikit-learn, HDBSCAN, Plotly, JavaScript,
         Three.js
       </p>
+      <ProjectNotes learned="" overcame="" />
 
       <div className="mt-8">
         <a
