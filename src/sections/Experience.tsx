@@ -1,6 +1,7 @@
 import { Navigate, useParams } from 'react-router-dom'
 import { EXPERIENCES } from '@/constants/experiences'
 import { ExperienceBoard } from '@/components/ExperienceBoard'
+import { ReflectionNotes } from '@/components/ReflectionNotes'
 import { sectionHeadingClass, sectionShellClass } from '@/components/Section'
 import gditPhoto1 from '@/assets/gdit/IMG_3423.png'
 import gditPhoto2 from '@/assets/gdit/IMG_6660.png'
@@ -28,13 +29,13 @@ function PhotoZigZag({ photos, label }: { photos: string[]; label: string }) {
   if (photos.length === 1) {
     return (
       <div
-        className="flex w-[min(48vw,320px)] shrink-0 items-center justify-center self-center md:w-[min(36vw,300px)] md:self-stretch md:py-6"
+        className="flex w-[min(52vw,380px)] shrink-0 items-center justify-center self-center md:w-[min(38vw,360px)] md:self-stretch md:py-6"
         aria-label={`${label} photos`}
       >
         <img
           src={photos[0]}
           alt=""
-          className="aspect-square w-[min(42vw,260px)] rounded-full object-cover shadow-md md:w-[min(30vw,280px)]"
+          className="aspect-square w-[min(48vw,340px)] rounded-full object-cover shadow-md md:w-[min(36vw,340px)]"
         />
       </div>
     )
@@ -42,7 +43,7 @@ function PhotoZigZag({ photos, label }: { photos: string[]; label: string }) {
 
   return (
     <div
-      className="flex w-[min(58vw,340px)] shrink-0 flex-col md:w-[min(40vw,360px)]"
+      className="flex w-[min(62vw,400px)] shrink-0 flex-col md:w-[min(38vw,380px)]"
       aria-label={`${label} photos`}
     >
       {photos.map((src, i) => (
@@ -51,7 +52,7 @@ function PhotoZigZag({ photos, label }: { photos: string[]; label: string }) {
           src={src}
           alt=""
           className={cn(
-            'aspect-square w-[min(34vw,150px)] rounded-full object-cover shadow-md md:w-[min(20vw,170px)]',
+            'aspect-square w-[min(40vw,200px)] rounded-full object-cover shadow-md md:w-[min(26vw,230px)]',
             i > 0 && '-mt-6 md:-mt-8',
             i % 2 === 0 ? 'self-end' : 'self-start',
           )}
@@ -63,12 +64,12 @@ function PhotoZigZag({ photos, label }: { photos: string[]; label: string }) {
 
 function CisessMedia() {
   return (
-    <div className="flex w-[min(48vw,320px)] shrink-0 flex-col items-center gap-5 self-center md:w-[min(36vw,300px)] md:self-stretch">
+    <div className="flex w-[min(52vw,380px)] shrink-0 flex-col items-center gap-5 self-center md:w-[min(38vw,360px)] md:self-stretch">
       <div className="flex w-full flex-1 items-center justify-center md:py-4">
         <img
           src={cisessPhoto}
           alt=""
-          className="aspect-square w-[min(42vw,260px)] rounded-full object-cover shadow-md md:w-[min(30vw,280px)]"
+          className="aspect-square w-[min(48vw,340px)] rounded-full object-cover shadow-md md:w-[min(36vw,340px)]"
         />
       </div>
       <div className="flex w-full flex-col gap-2">
@@ -135,14 +136,13 @@ export function ExperienceDetail() {
       <article>
         <div
           className={cn(
-            'gap-10',
             photos || isCisess
-              ? 'flex flex-col md:flex-row md:items-start md:justify-between'
+              ? 'flex flex-col gap-6 md:flex-row md:items-start md:gap-8'
               : '',
           )}
         >
           <div className="min-w-0 flex-1">
-            <header className="max-w-3xl">
+            <header>
               <h2
                 id="experience-detail-heading"
                 className="font-sans text-3xl font-bold tracking-tight text-ink sm:text-4xl"
@@ -161,11 +161,16 @@ export function ExperienceDetail() {
               </p>
             </header>
 
-            <ul className="mt-8 max-w-3xl list-disc space-y-3 pl-5 text-base leading-relaxed text-mute marker:text-clay sm:text-lg">
+            <ul className="mt-8 list-disc space-y-3 pl-5 text-base leading-relaxed text-mute marker:text-clay sm:text-lg">
               {experience.bullets.map((bullet) => (
                 <li key={bullet}>{bullet}</li>
               ))}
             </ul>
+
+            <ReflectionNotes
+              learned={experience.learned}
+              overcame={experience.overcame}
+            />
           </div>
 
           {isCisess ? (
