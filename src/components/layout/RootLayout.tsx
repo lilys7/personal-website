@@ -36,10 +36,10 @@ export function RootLayout() {
       <BulletinBackground />
       <Sidebar open={open} onToggle={toggle} />
       <div
-        className="transition-[padding-left] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        className="flex min-h-dvh flex-col transition-[padding-left] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
         style={{ paddingLeft: open ? SIDEBAR_WIDTH : 0 }}
       >
-        <main>
+        <main className="flex-1">
           <Outlet />
         </main>
         <Footer />
