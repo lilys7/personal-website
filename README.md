@@ -1,2 +1,2 @@
 # personal-website
-[Portfolio](www.lilyshen.me)
+[Portfolio](https://www.lilyshen.me)
